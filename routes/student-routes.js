@@ -11,8 +11,8 @@ const express = require('express');
 const signupUser = require("../controllers/Signup");
 const signInUser = require("../controllers/Login");
 const getCourse = require("../controllers/getCourse");
-const getForum = require('../controllers/getForum');
-
+const {getForum,postForum} = require('../controllers/forum');
+const {getComments, postComments} = require("../controllers/comments")
 const router = express.Router();
 
 // router.post('/student', addStudent);
@@ -24,6 +24,9 @@ router.post('/register',signupUser);
 router.post('/login',signInUser);
 router.get('/course',getCourse);
 router.get('/forum', getForum);
+router.post('/forum', postForum);
+router.get('/forum/:id', getComments)
+router.post('/forum/:id', postComments)
 
 
 module.exports = {
