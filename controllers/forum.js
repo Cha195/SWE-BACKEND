@@ -7,11 +7,11 @@ const Comments = require('../models/Comments')
 const firestore = firebase.firestore()
 
 const getForum = async (req, res, next) => {
-  const threadId = req.params.courseId
+  const courseId = req.params.courseId
   const threadArray = []
+  const course = firestore.collection('forum').doc(courseId).collection('threads')
 
-  await firestore.collection('forum').doc(threadId)
-  .collection('threads').get()
+  await course.get()
   .then(querySnapshot => {
     querySnapshot.forEach(doc => {
       threadArray.push({
@@ -29,8 +29,8 @@ const getForum = async (req, res, next) => {
 
 // new thread
 const postForum = async (req, res, next) => {
-  const threadId = req.params.threadId;
-  const course =  firestore.collection("forum").doc(threadId)
+  const courseId = req.params.courseId;
+  const course =  firestore.collection("forum").doc(courseId)
 
   course.collection("threads").add({
     Title: req.body.title

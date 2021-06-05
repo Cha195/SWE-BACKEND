@@ -15,6 +15,7 @@ const signInUser= async (req, res, next) => {
         res.send(user.uid)
       })  
   } catch (error) {
+    console.log(error.message)
     res.status(400).send(error.message)
   }
 }

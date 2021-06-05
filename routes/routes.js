@@ -9,12 +9,11 @@ const router = express.Router()
 
 router.post('/register', signupUser)
 router.post('/login', signInUser)
-router.get('/courses', getCourse)
-router.get('/courses/:courseId/forum', getForum)
-router.post('/courses/:courseId/forum', postForum)
-router.get('/courses/:courseId/forum/:threadId', getComments)
-router.post('/courses/:courseId/forum/:threadId', postComments)
-
+router.get('/course', getCourse)
+router.get('/course/:courseId/forum', getForum)
+router.post('/course/:courseId/forum', postForum)
+router.get('/course/:courseId/forum/:threadId', getComments)
+router.post('/course/:courseId/forum/:threadId', postComments)
 
 module.exports = {
   routes: router
