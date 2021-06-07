@@ -1,9 +1,6 @@
 'use strict'
 
 const firebase = require('../db')
-const Forum = require('../models/Book')
-const Threads = require('../models/Threads')
-const Comments = require('../models/Comments')
 const firestore = firebase.firestore()
 
 const getForum = async (req, res, next) => {

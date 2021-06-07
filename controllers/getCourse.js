@@ -1,7 +1,6 @@
 'use strict'
 
 const firebase = require('../db')
-const Book = require('../models/Book')
 const firestore = firebase.firestore()
 
 const getCourse = async (req, res, next) => {
@@ -13,13 +12,16 @@ const getCourse = async (req, res, next) => {
       res.status(404).send('No student record found')
     } else {
       data.forEach(doc => {
-        const book = new Book(
-          doc.data().bookLink,
-          doc.data().bookName,
-          doc.data().courseId,
-          doc.data().courseName
-        );
-        courseArray.push(book)
+        const resources = {
+          courseName: doc.data().courseName,
+          bookLink: doc.data().bookLink,
+          bookName: doc.data().bookName,
+          courseId: doc.data().courseId,
+          playListName: doc.data().playListName,
+          playListLink: doc.data().playListLink,
+          channelName: doc.data().channelName
+        }
+        courseArray.push(resources)
       });
       res.send(courseArray)
     }  
