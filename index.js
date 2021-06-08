@@ -9,6 +9,12 @@ const app = express();
 
 app.use(express.json())
 app.use(cors())
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.use('/', appRoutes.routes)
 
